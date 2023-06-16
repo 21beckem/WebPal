@@ -1,0 +1,93 @@
+#WebPal-container {
+  z-index: 9999999997;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  align-items: flex-end;
+}
+
+#WebPal-character {
+  width: 100px;
+  height: 100px;
+  background-image: url('pal_placeholder.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#WebPal-textbubble {
+  position: absolute;
+  background-color: #eeeeee;
+  border-radius: 8px;
+  padding: 10px;
+  display: none;
+  bottom: 110px;
+  right: 40px;
+  width: max-content;
+  text-align: center;
+  min-width: 80px;
+  max-width: 250px;
+  box-shadow: 2px 2px 15px -10px black;
+}
+#WebPal-textbubble:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 23px solid transparent;
+  border-top: 15px solid transparent;
+  border-bottom: 17px solid #eeeeee;
+  right: 40px;
+  bottom: -14px;
+  transform: rotate(39deg);
+}
+#WebPal-text {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #000000;
+  margin: 0;
+}
+#WebPal-clickdetector {
+  z-index: 9999999998;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: transparent;
+}
+#WebPal-screendimmer {
+  z-index: 9999999996;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0,   49%);
+}
+#WebPal-container.show-bubble #WebPal-textbubble {
+  display: block;
+}
+#WebPal-answerscontainer {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+}
+#WebPal-answerscontainer div {
+  text-align: center;
+  display: flex;
+  flex: 1;
+  padding: 4px;
+}
+.WebPal-answerBtn {
+  background-color: pink;
+  width: 100%;
+  border: none;
+  padding: 5px;
+  border-radius: 10px 5px;
+  box-shadow: inset -1px -2px 11px -5px #ff3c3c;
+}

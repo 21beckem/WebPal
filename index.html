@@ -5,18 +5,38 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="WebPal.css">
 </head>
 <body>
-  <div id="character-container">
-    <div id="character"></div>
-    <div id="text-bubble">
-      <a id="text">Hejsan!! Hur går det med dig? :D I am so excited to start inboxing with you!</a>
-    </div>
-  </div>
-  
+  <p>
+    Nostra dignissim inceptos conubia aptent, fringilla maecenas fermentum libero penatibus morbi. Curabitur felis dapibus ornare proin augue vestibulum nostra ligula arcu potenti mus! Turpis sodales, semper scelerisque habitant mattis justo diam eget. Ac himenaeos molestie auctor. Dictumst turpis ultricies tristique tristique id tortor, ac ipsum praesent eget. Feugiat, dignissim diam fermentum placerat primis faucibus. Erat, velit lobortis sodales egestas turpis potenti sit convallis morbi fermentum. Porttitor sociosqu aliquet pellentesque vestibulum netus cubilia dapibus. Gravida mus purus, auctor amet. Imperdiet odio sagittis potenti suspendisse nibh purus tempor, est nisi. Himenaeos, mollis massa.
+    </p>
+    <p>
+    Non nibh sit cubilia purus dui rhoncus aenean nascetur pellentesque donec. Vestibulum mattis malesuada dictum natoque aliquam volutpat. Ultrices, magnis ultrices rhoncus. Vulputate posuere donec ridiculus a porta aenean fermentum netus eu duis et. Faucibus ligula tempor blandit ipsum iaculis gravida hendrerit est duis fames sodales in? Fusce nisi penatibus habitant. Hendrerit ipsum etiam enim nunc. Quam class commodo est eu cras ultrices! Elit netus semper inceptos ligula tellus. Dignissim in sem leo placerat placerat. Semper praesent elit aptent ac platea lobortis, hac venenatis elementum tempus cubilia volutpat. Fringilla bibendum sit congue ridiculus nisl potenti habitant diam accumsan luctus.
+    </p>
+    <p>
+    Blandit nisl cubilia habitasse mauris, aptent integer volutpat vel pulvinar. Nascetur ullamcorper dictum arcu neque conubia nec quisque potenti turpis. Hendrerit penatibus facilisi mauris euismod pharetra litora, dis nibh adipiscing. Fringilla viverra neque ut consectetur. Ultricies, gravida pulvinar dictum id commodo dignissim imperdiet vivamus. Condimentum porta ultrices sociis facilisi vehicula imperdiet dignissim integer et magna. Sed per, sociosqu aliquet pretium. Elit nunc himenaeos posuere per curabitur ac lorem purus donec natoque. Tempor quisque est faucibus.
+    </p>
+    <p>
+    Nullam nascetur cursus vitae eu placerat mattis curabitur ante aenean! Metus ornare ac malesuada ultrices taciti sociosqu. Porttitor, dapibus tincidunt ligula sem mus vivamus fringilla maecenas. Vulputate mollis semper pulvinar sodales pellentesque quisque eu. Dolor consequat dis, donec dignissim mi nec. Etiam, himenaeos magna eget. Sem diam platea purus aliquam ut risus suscipit semper leo primis nullam interdum. Nunc eros egestas neque ornare suscipit aliquam inceptos. Ad mus ullamcorper turpis tincidunt ac integer curae; convallis suspendisse dictum augue pulvinar. Gravida fames laoreet; urna phasellus gravida aenean sed. At.
+    </p>
+    <p>
+    Ipsum velit per sed molestie vulputate ac bibendum dapibus, vulputate nisl. Tincidunt fusce purus etiam in. Curabitur nostra molestie fringilla in adipiscing, fringilla tincidunt nunc elementum habitasse suspendisse ac. Erat potenti sollicitudin, metus eleifend in dis massa. Felis pretium, elementum magnis sociosqu commodo! Fames tristique nisi lacus aliquam posuere morbi scelerisque. Tellus felis rutrum congue ipsum penatibus integer dolor mattis enim. Magna litora euismod accumsan mus.
+    </p>
   
 
-  <script src="script.js"></script>
+
+  <script src="WebPal.js"></script>
+  <script>
+window.onload = () => {
+  window.InboxFox = new WebPal();
+  // InboxFox.say('hi!');
+  // InboxFox.say('hi!', 5000);
+  // InboxFox.say('hi!', 5000, true);
+  InboxFox.ask('Do you understand?', ['Yes'], (choice) => {
+    console.log('answered: ' + choice);
+  });
+}
+  </script>
 </body>
 </html>
