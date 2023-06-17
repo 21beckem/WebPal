@@ -1,5 +1,5 @@
 #WebPal-container {
-  z-index: 9999999997;
+  z-index: 99997;
   position: fixed;
   bottom: 59px;
   right: 20px;
@@ -13,6 +13,7 @@
   background-image: url('https://21beckem.github.io/WebPal/Fox_v0.0.1.png');
   background-repeat: no-repeat;
   background-size: contain;
+  filter: drop-shadow(3px 4px 4px rgba(0,0,0,0.7));
 }
 
 #WebPal-textbubble {
@@ -49,7 +50,7 @@
   margin: 0;
 }
 #WebPal-clickdetector {
-  z-index: 9999999998;
+  z-index: 99998;
   display: none;
   position: fixed;
   width: 100%;
@@ -59,7 +60,7 @@
   background-color: transparent;
 }
 #WebPal-screendimmer {
-  z-index: 9999999996;
+  z-index: 99996;
   display: none;
   position: fixed;
   width: 100%;
