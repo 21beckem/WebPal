@@ -50,7 +50,7 @@ class WebPal {
         if (this.messageShowing) {
             return;
         }
-        this.textEl.innerText = text;
+        this.textEl.innerHTML = text;
         this.mustWait = false;
         this.showMessage(true);
 
