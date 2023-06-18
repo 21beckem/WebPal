@@ -24,6 +24,7 @@ class WebPal {
         this.textbubbleEl.onclick = () => { this.shouldIHideMessage() };
         this.textEl.onclick = () => { this.shouldIHideMessage() };
         this.messageShowing = false;
+        this.pokeFunction = () => { console.log('Poke!') }
     }
     shouldIHideMessage(poking=false) {
         if (this.messageShowing) {
@@ -32,24 +33,28 @@ class WebPal {
             }
         } else {
             if (poking) {
-                alert('Poke!');
+                setTimeout(() => {
+                    this.pokeFunction();
+                }, 1);
             }
         }
     }
     showMessage(yesNo) {
         if (yesNo) {
             this.containerEl.classList.add('show-bubble');
-            this.screendimmerEl.style.display = 'block';
+            this.screendimmerEl.style.opacity = '1';
         } else {
             this.containerEl.classList.remove('show-bubble');
-            this.screendimmerEl.style.display = 'none';
+            this.screendimmerEl.style.opacity = '0';
         }
         this.messageShowing = yesNo;
     }
     say(text, duration=0, mustWait=false) {
         if (this.messageShowing) {
+            console.warn('Fox already saying something');
             return;
         }
+        console.log(this.containerEl);
         this.textEl.innerHTML = text;
         this.mustWait = false;
         this.showMessage(true);
@@ -58,11 +63,12 @@ class WebPal {
             this.mustWait = mustWait;
             setTimeout(() => {
                 this.showMessage(false);
-            }, duration); // Hide text bubble after 2 seconds
+            }, duration); // Hide text bubble after 'duration' seconds
         }
     }
-    ask(text, options, callback) {
+    ask(text, options, callback, allowCancel=false) {
         if (this.messageShowing) {
+            console.warn('Fox already saying something');
             return;
         }
         text += '<div id="WebPal-answerscontainer">';
@@ -72,13 +78,13 @@ class WebPal {
         text += '</div>';
         this.textEl.innerHTML = text;
 
-        this.mustWait = true;
+        this.mustWait = !allowCancel;
         this.showMessage(true);
         let btns = document.getElementsByClassName('WebPal-answerBtn');
         for (let i=0; i < btns.length; i++) {
             btns.item(i).onclick = () => {
-                callback(btns.item(i).innerText);
                 this.showMessage(false);
+                callback(btns.item(i).innerText);
             }
         }
     }
