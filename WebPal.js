@@ -54,7 +54,6 @@ class WebPal {
             console.warn('Fox already saying something');
             return;
         }
-        console.log(this.containerEl);
         this.textEl.innerHTML = text;
         this.mustWait = false;
         this.showMessage(true);
@@ -84,7 +83,9 @@ class WebPal {
         for (let i=0; i < btns.length; i++) {
             btns.item(i).onclick = () => {
                 this.showMessage(false);
-                callback(btns.item(i).innerText);
+                setTimeout(() => {
+                    callback(btns.item(i).innerText);
+                }, 1);
             }
         }
     }
