@@ -20,11 +20,9 @@ class WebPal {
         this.textbubbleEl = document.getElementById('WebPal-textbubble');
         this.textEl = document.getElementById('WebPal-text');
         this.screendimmerEl.onclick = () => { this.shouldIHideMessage() };
-        this.containerEl.onclick = () => { this.shouldIHideMessage() };
-        this.characterEl.onclick = () => { this.shouldIHideMessage(true) };
-        this.textbubbleEl.onclick = () => { this.shouldIHideMessage() };
-        this.textEl.onclick = () => { this.shouldIHideMessage() };
+        this.characterEl.onclick = (e) => { this.shouldIHideMessage(true) };
         this.messageShowing = false;
+        this.fadingTimeout = null;
         this.pokeFunction = () => { console.log('Poke!') }
         this.riv = new rive.Rive({
             src: "https://21beckem.github.io/WebPal/animationFiles/cuteWave-becker1.riv",
@@ -35,6 +33,13 @@ class WebPal {
                 this.riv.resizeDrawingSurfaceToCanvas();
             },
         });
+    }
+    checkIfActuallyClickingFoxOnCanvas(e) {
+        let context = this.characterEl.getContext("2d", { willReadFrequently: true });
+        let data = context.getImageData(e.offsetX, e.offsetY, 1, 1).data;
+        if (data[3]!=0) {
+            this.shouldIHideMessage(true);
+        }
     }
     shouldIHideMessage(poking=false) {
         if (this.messageShowing) {
@@ -51,11 +56,18 @@ class WebPal {
     }
     showMessage(yesNo) {
         if (yesNo) {
+            clearTimeout(this.fadingTimeout);
+            document.documentElement.style.setProperty('--fadeBlockness', 'block');
+            document.documentElement.style.setProperty('--fadeOpacityVal', '1');
             this.containerEl.classList.add('show-bubble');
             this.screendimmerEl.style.opacity = '1';
         } else {
             this.containerEl.classList.remove('show-bubble');
             this.screendimmerEl.style.opacity = '0';
+            this.fadingTimeout = setTimeout(() => {
+                document.documentElement.style.setProperty('--fadeBlockness', 'none');
+                document.documentElement.style.setProperty('--fadeOpacityVal', '0');
+            }, 200);
         }
         this.messageShowing = yesNo;
     }
