@@ -27,7 +27,7 @@ class WebPal {
         this.messageShowing = false;
         this.pokeFunction = () => { console.log('Poke!') }
         this.riv = new rive.Rive({
-            src: "animationFiles/cuteWave-becker1.riv",
+            src: "https://21beckem.github.io/WebPal/animationFiles/cuteWave-becker1.riv",
             canvas: this.characterEl,
             autoplay: true,
             stateMachines: "bumpy",
