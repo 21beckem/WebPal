@@ -12,6 +12,7 @@
   height: 170px;
   filter: drop-shadow(3px 4px 4px rgba(0,0,0,0.7));
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #WebPal-textbubble {
