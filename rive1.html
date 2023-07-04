@@ -8,7 +8,7 @@
 </head>
 <body>
     <center>
-        <canvas id="riveCanvas" width="100" height="100"></canvas>
+        <canvas id="WebPalCanvasElement_mb" width="100" height="100"></canvas>
         <br><br><br>
         <button onclick="r.play('Wave1')">Play Wave Animation</button>
     </center>
@@ -18,7 +18,7 @@ const r = new rive.Rive({
     src: "animationFiles/cuteWave-becker1.riv",
     // Or the path to a public Rive asset
     // src: '/public/example.riv',
-    canvas: document.getElementById("riveCanvas"),
+    canvas: document.getElementById("WebPalCanvasElement_mb"),
     autoplay: true,
     stateMachines: "bumpy",
     onLoad: () => {

@@ -1,9 +1,10 @@
+document.write('<script src="https://unpkg.com/@rive-app/canvas@1.2.1"></script>');
 class WebPal {
     constructor() {
         document.body.innerHTML += `
 <div id="WebPal-screendimmer"></div>
 <div id="WebPal-container">
-  <div id="WebPal-character"></div>
+  <canvas id="WebPal-character" width="100" height="100"></canvas>
   <div id="WebPal-textbubble">
     <a id="WebPal-text">Is there anything I can do for you?
         <div id="WebPal-answerscontainer">
@@ -25,6 +26,15 @@ class WebPal {
         this.textEl.onclick = () => { this.shouldIHideMessage() };
         this.messageShowing = false;
         this.pokeFunction = () => { console.log('Poke!') }
+        this.riv = new rive.Rive({
+            src: "animationFiles/cuteWave-becker1.riv",
+            canvas: this.characterEl,
+            autoplay: true,
+            stateMachines: "bumpy",
+            onLoad: () => {
+                this.riv.resizeDrawingSurfaceToCanvas();
+            },
+        });
     }
     shouldIHideMessage(poking=false) {
         if (this.messageShowing) {
@@ -48,6 +58,9 @@ class WebPal {
             this.screendimmerEl.style.opacity = '0';
         }
         this.messageShowing = yesNo;
+    }
+    playAnimation(animNam) {
+        this.riv.play(animNam);
     }
     say(text, duration=0, mustWait=false) {
         if (this.messageShowing) {

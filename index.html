@@ -69,6 +69,7 @@ window.onload = () => {
     // }, true);
 
     InboxFox.pokeFunction = () => {
+        InboxFox.playAnimation('Wave1');
         InboxFox.ask('Hey! Need any help?', ['Yes Please!', 'No Thanks :)'], (choice) => {
             if (choice.includes('No')) {
                 InboxFox.say('Okay, just let me know :)', 2000);
