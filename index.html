@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="WebPal.css">
 </head>
 
-<body>
+<body style="font-family: Verdana, sans-serif;">
     <p>
         Nostra dignissim inceptos conubia aptent, fringilla maecenas fermentum libero penatibus morbi. Curabitur felis
         dapibus ornare proin augue vestibulum nostra ligula arcu potenti mus! Turpis sodales, semper scelerisque
@@ -70,9 +70,9 @@ window.onload = () => {
 
     InboxFox.pokeFunction = () => {
         InboxFox.playAnimation('Wave1');
-        InboxFox.ask('Hey! Need any help?', ['Yes Please!', 'No Thanks :)'], (choice) => {
+        InboxFox.ask('Hey! Need any help?', ['Yes Please!', 'No Thanks!'], (choice) => {
             if (choice.includes('No')) {
-                InboxFox.say('Okay, just let me know :)', 2000);
+                InboxFox.say('Okay, just let me know', 2000);
             } else {
                 location.href = 'https://www.google.com/search?q=i+need+help';
             }

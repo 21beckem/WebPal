@@ -16,8 +16,9 @@
 }
 
 #WebPal-textbubble {
+  outline: #E4E4E4 solid 3px;
   position: absolute;
-  background-color: #eeeeee;
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 10px;
   opacity: 0;
@@ -31,18 +32,26 @@
   display: var(--fadeBlockness);
   transition: var(--fadeMessageInOut);
 }
-#WebPal-textbubble:before {
+#WebPal-textbubble:before, #WebPal-textbubble:after {
   content: "";
-  width: 0px;
-  height: 0px;
+  display: block;
   position: absolute;
-  border-left: 15px solid transparent;
-  border-right: 23px solid transparent;
-  border-top: 15px solid transparent;
-  border-bottom: 17px solid #eeeeee;
   right: 40px;
-  bottom: -14px;
-  transform: rotate(39deg);
+  bottom: -12px;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  border: solid 12px transparent;
+  border-top: 0;
+  border-bottom-color: #ffffff;
+  transform: rotate(180deg);
+}
+#WebPal-textbubble:before {
+  transform: rotate(180deg) scale(1.2);
+  bottom: -15px;
+  z-index: 1;
+  border-bottom-color: #E4E4E4;
 }
 #WebPal-text {
   font-size: 14px;
@@ -88,12 +97,23 @@
   padding: 4px;
 }
 .WebPal-answerBtn {
-  background-color: pink;
+  background-color: white;
+  color: #4b4b4b;
+  border: 2px solid #E5E5E5;
+  box-shadow: 0px 2px 0px #E5E5E5;
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+}
+.WebPal-answerBtn-backup {
+  background: linear-gradient(0deg, rgba(232,133,208,1) 0%, rgba(187,167,217,1) 100%);
+  background-color: #BBA7DA;
+  color: white;
   width: 100%;
   border: none;
   padding: 5px;
+  padding: 10px 5px 10px 5px;
   border-radius: 10px 5px;
-  box-shadow: inset -1px -2px 11px -5px #ff3c3c;
 }
 :root {
   --fadeMessageInOut: opacity 0.2s ease;
