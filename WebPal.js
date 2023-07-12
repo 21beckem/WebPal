@@ -3,6 +3,7 @@ class WebPal {
     constructor() {
         document.body.innerHTML += `
 <div id="WebPal-screendimmer"></div>
+<canvas id="WebPal-BigAnim"></canvas>
 <div id="WebPal-container">
   <canvas id="WebPal-character" width="100" height="100"></canvas>
   <div id="WebPal-textbubble">
@@ -17,6 +18,18 @@ class WebPal {
         this.screendimmerEl = document.getElementById('WebPal-screendimmer');
         this.containerEl = document.getElementById('WebPal-container');
         this.characterEl = document.getElementById('WebPal-character');
+        this.bigAnimEl = document.getElementById('WebPal-BigAnim');
+        this.bigAnimEl.width = window.innerWidth;
+        this.bigAnimEl.height = window.innerWidth;
+        this.bigRiv = new rive.Rive({
+            src: "https://21beckem.github.io/WebPal/animationFiles/coin1.riv",
+            canvas: this.bigAnimEl,
+            autoplay: true,
+            stateMachines: "bumpy",
+            onLoad: () => {
+                this.riv.resizeDrawingSurfaceToCanvas();
+            },
+        });
         this.textbubbleEl = document.getElementById('WebPal-textbubble');
         this.textEl = document.getElementById('WebPal-text');
         this.screendimmerEl.onclick = () => { this.shouldIHideMessage() };

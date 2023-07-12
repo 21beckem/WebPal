@@ -15,6 +15,12 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+#WebPal-BigAnim {
+  position: fixed;
+  bottom: 250px;
+  left: 0px;
+}
+
 #WebPal-textbubble {
   outline: #E4E4E4 solid 3px;
   position: absolute;
