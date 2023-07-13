@@ -3,7 +3,7 @@ class WebPal {
     constructor() {
         document.body.innerHTML += `
 <div id="WebPal-screendimmer"></div>
-<canvas id="WebPal-BigAnim"></canvas>
+<canvas id="WebPal-BigAnim" style="display:none"></canvas>
 <div id="WebPal-container">
   <canvas id="WebPal-character" width="100" height="100"></canvas>
   <div id="WebPal-textbubble">
