@@ -16,6 +16,7 @@
 }
 
 #WebPal-BigAnim {
+  z-index: 99997;
   position: fixed;
   bottom: 250px;
   left: 0px;

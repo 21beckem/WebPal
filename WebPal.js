@@ -21,15 +21,6 @@ class WebPal {
         this.bigAnimEl = document.getElementById('WebPal-BigAnim');
         this.bigAnimEl.width = window.innerWidth;
         this.bigAnimEl.height = window.innerWidth;
-        this.bigRiv = new rive.Rive({
-            src: "https://21beckem.github.io/WebPal/animationFiles/streak-extended-notready1.riv",
-            canvas: this.bigAnimEl,
-            autoplay: true,
-            stateMachines: "bumpy",
-            onLoad: () => {
-                this.riv.resizeDrawingSurfaceToCanvas();
-            },
-        });
         this.textbubbleEl = document.getElementById('WebPal-textbubble');
         this.textEl = document.getElementById('WebPal-text');
         this.screendimmerEl.onclick = () => { this.shouldIHideMessage() };
@@ -86,6 +77,39 @@ class WebPal {
     }
     playAnimation(animNam) {
         this.riv.play(animNam);
+    }
+    playLargeRive(rivNam, stateMachineName) {
+        clearTimeout(this.fadingTimeout);
+        this.bigAnimEl.style.display = '';
+        document.documentElement.style.setProperty('--fadeBlockness', 'block');
+        document.documentElement.style.setProperty('--fadeOpacityVal', '1');
+        this.messageShowing = true;
+        this.mustWait = true;
+        this.screendimmerEl.style.opacity = '1';
+        this.bigRiv = new rive.Rive({
+            src: "https://21beckem.github.io/WebPal/animationFiles/" + rivNam,
+            canvas: this.bigAnimEl,
+            autoplay: true,
+            stateMachines: stateMachineName,
+            onLoad: () => {
+                this.riv.resizeDrawingSurfaceToCanvas();
+            },
+            onStateChange: (event) => {
+                if (event.data.includes('exit')) {
+                    this.endLargeRive();
+                }
+            }
+        });
+    }
+    endLargeRive() {
+        this.screendimmerEl.style.opacity = '0';
+        this.bigAnimEl.style.display = 'none';
+        this.fadingTimeout = setTimeout(() => {
+            document.documentElement.style.setProperty('--fadeBlockness', 'none');
+            document.documentElement.style.setProperty('--fadeOpacityVal', '0');
+        }, 200);
+        this.messageShowing = false;
+        this.mustWait = false;
     }
     say(text, duration=0, mustWait=false) {
         if (this.messageShowing) {
