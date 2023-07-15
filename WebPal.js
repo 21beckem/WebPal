@@ -3,7 +3,8 @@ class WebPal {
     constructor() {
         document.body.innerHTML += `
 <div id="WebPal-screendimmer"></div>
-<canvas id="WebPal-BigAnim"></canvas>
+<canvas id="WebPal-BigAnim" style="display:none"></canvas>
+<div id="WebPal-BigAnim-Clicker" style="display:none"></div>
 <div id="WebPal-container">
   <canvas id="WebPal-character" width="100" height="100"></canvas>
   <div id="WebPal-textbubble">
@@ -19,6 +20,10 @@ class WebPal {
         this.containerEl = document.getElementById('WebPal-container');
         this.characterEl = document.getElementById('WebPal-character');
         this.bigAnimEl = document.getElementById('WebPal-BigAnim');
+        this.bigAnimClickerEl = document.getElementById('WebPal-BigAnim-Clicker');
+        this.bigAnimClickerEl.onclick = () => { this.shouldIHideMessage() };
+        this.bigAnimClickerEl.style.width = window.innerWidth + 'px';
+        this.bigAnimClickerEl.style.height = window.innerWidth + 'px';
         this.bigAnimEl.width = window.innerWidth;
         this.bigAnimEl.height = window.innerWidth;
         this.textbubbleEl = document.getElementById('WebPal-textbubble');
@@ -26,6 +31,7 @@ class WebPal {
         this.screendimmerEl.onclick = () => { this.shouldIHideMessage() };
         this.characterEl.onclick = (e) => { this.shouldIHideMessage(true) };
         this.messageShowing = false;
+        this.bigRiveShowing = false;
         this.fadingTimeout = null;
         this.pokeFunction = () => { console.log('Poke!') }
         this.riv = new rive.Rive({
@@ -46,6 +52,12 @@ class WebPal {
         }
     }
     shouldIHideMessage(poking=false) {
+        if (this.bigRiveShowing) {
+            if (!this.mustWait) {
+                this.triggerExitBigRiv();
+                return;
+            }
+        }
         if (this.messageShowing) {
             if (!this.mustWait) {
                 this.showMessage(false);
@@ -78,13 +90,17 @@ class WebPal {
     playAnimation(animNam) {
         this.riv.play(animNam);
     }
-    playLargeRive(rivNam, stateMachineName) {
+    playLargeRive(rivNam, stateMachineName, clickAnywhereToExitStateMachine=true, triggerExitInputName='trigger exit') {
         clearTimeout(this.fadingTimeout);
         this.bigAnimEl.style.display = '';
+        if (clickAnywhereToExitStateMachine) {
+            this.bigAnimClickerEl.style.display = '';
+        }
+        this.textbubbleEl.style.display = 'none';
         document.documentElement.style.setProperty('--fadeBlockness', 'block');
         document.documentElement.style.setProperty('--fadeOpacityVal', '1');
         this.messageShowing = true;
-        this.mustWait = true;
+        this.bigRiveShowing = true;
         this.screendimmerEl.style.opacity = '1';
         this.bigRiv = new rive.Rive({
             src: "https://21beckem.github.io/WebPal/animationFiles/" + rivNam,
@@ -92,7 +108,17 @@ class WebPal {
             autoplay: true,
             stateMachines: stateMachineName,
             onLoad: () => {
-                this.riv.resizeDrawingSurfaceToCanvas();
+                if (clickAnywhereToExitStateMachine) {
+                    const inputs = this.bigRiv.stateMachineInputs(stateMachineName);
+                    // Find the input you want to set a value for, or trigger
+                    const exitTrigger = inputs.find(i => i.name === triggerExitInputName);
+                    this.triggerExitBigRiv = () => {
+                        try { exitTrigger.fire(); } catch (e) {}
+                    }
+                } else {
+                    this.triggerExitBigRiv = () => {};
+                }
+                this.bigAnimEl.onclick = () => { this.shouldIHideMessage() };
             },
             onStateChange: (event) => {
                 if (event.data.includes('exit')) {
@@ -104,12 +130,14 @@ class WebPal {
     endLargeRive() {
         this.screendimmerEl.style.opacity = '0';
         this.bigAnimEl.style.display = 'none';
+        this.bigAnimClickerEl.style.display = 'none';
         this.fadingTimeout = setTimeout(() => {
+            this.textbubbleEl.style.display = '';
             document.documentElement.style.setProperty('--fadeBlockness', 'none');
             document.documentElement.style.setProperty('--fadeOpacityVal', '0');
         }, 200);
         this.messageShowing = false;
-        this.mustWait = false;
+        this.bigRiveShowing = false;
     }
     say(text, duration=0, mustWait=false) {
         if (this.messageShowing) {

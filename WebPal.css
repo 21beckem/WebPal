@@ -20,6 +20,13 @@
   position: fixed;
   bottom: 250px;
   left: 0px;
+  filter: drop-shadow(3px 2px 4px rgba(0,0,0,0.7));
+}
+#WebPal-BigAnim-Clicker {
+  z-index: 99998;
+  position: fixed;
+  bottom: 250px;
+  left: 0px;
 }
 
 #WebPal-textbubble {
