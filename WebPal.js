@@ -3,7 +3,7 @@ class WebPal {
     constructor() {
         document.body.innerHTML += `
 <div id="WebPal-screendimmer"></div>
-<canvas id="WebPal-BigAnim" style="display:none"></canvas>
+<canvas id="WebPal-BigAnim"></canvas>
 <div id="WebPal-container">
   <canvas id="WebPal-character" width="100" height="100"></canvas>
   <div id="WebPal-textbubble">
@@ -22,7 +22,7 @@ class WebPal {
         this.bigAnimEl.width = window.innerWidth;
         this.bigAnimEl.height = window.innerWidth;
         this.bigRiv = new rive.Rive({
-            src: "https://21beckem.github.io/WebPal/animationFiles/coin1.riv",
+            src: "https://21beckem.github.io/WebPal/animationFiles/streak-extended-notready1.riv",
             canvas: this.bigAnimEl,
             autoplay: true,
             stateMachines: "bumpy",
