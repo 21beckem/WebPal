@@ -8,7 +8,7 @@ class WebPal {
 <div id="WebPal-container">
   <canvas id="WebPal-character" width="100" height="100"></canvas>
   <div id="WebPal-textbubble">
-    <a id="WebPal-text">Is there anything I can do for you?
+    <a id="WebPal-text">
         <div id="WebPal-answerscontainer">
             <div><button class="WebPal-answerBtn">Yes</button></div>
             <div><button class="WebPal-answerBtn">No</button></div>
@@ -35,7 +35,7 @@ class WebPal {
         this.fadingTimeout = null;
         this.pokeFunction = () => { console.log('Poke!') }
         this.riv = new rive.Rive({
-            src: "https://21beckem.github.io/WebPal/animationFiles/cuteWave-becker1.riv",
+            src: "https://21beckem.github.io/WebPal/animationFiles/foxFromBenjamin1.riv",
             canvas: this.characterEl,
             autoplay: true,
             stateMachines: "bumpy",
