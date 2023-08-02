@@ -32,17 +32,25 @@ class WebPal {
         this.characterEl.onclick = (e) => { this.shouldIHideMessage(true) };
         this.messageShowing = false;
         this.bigRiveShowing = false;
+        this.allowAnimLoop = false;
         this.fadingTimeout = null;
         this.pokeFunction = () => { console.log('Poke!') }
         this.riv = new rive.Rive({
             src: "https://21beckem.github.io/WebPal/animationFiles/foxFromBenjamin1.riv",
             canvas: this.characterEl,
-            autoplay: true,
-            stateMachines: "bumpy",
+            autoplay: false,
             onLoad: () => {
                 this.riv.resizeDrawingSurfaceToCanvas();
             },
+            onLoop: (event) => {
+                this.shouldStopLoopedAnim(event.data.animation);
+            }
         });
+    }
+    shouldStopLoopedAnim(animName) {
+        if (!this.allowAnimLoop) {
+            truck.stop(animName);
+        }
     }
     checkIfActuallyClickingFoxOnCanvas(e) {
         let context = this.characterEl.getContext("2d", { willReadFrequently: true });
@@ -87,7 +95,8 @@ class WebPal {
         }
         this.messageShowing = yesNo;
     }
-    playAnimation(animNam) {
+    playAnimation(animNam, allowLoop=false) {
+        this.allowAnimLoop = allowLoop;
         this.riv.play(animNam);
     }
     playLargeRive(rivNam, stateMachineName, clickAnywhereToExitStateMachine=true, triggerExitInputName='trigger exit') {
