@@ -49,7 +49,7 @@ class WebPal {
     }
     shouldStopLoopedAnim(animName) {
         if (!this.allowAnimLoop) {
-            truck.stop(animName);
+            this.riv.stop(animName);
         }
     }
     checkIfActuallyClickingFoxOnCanvas(e) {
