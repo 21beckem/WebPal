@@ -49,7 +49,7 @@ class WebPal {
     }
     shouldStopLoopedAnim(animName) {
         if (!this.allowAnimLoop) {
-            this.riv.stop(animName);
+            this.riv.pause(animName);
         }
     }
     checkIfActuallyClickingFoxOnCanvas(e) {
@@ -97,6 +97,7 @@ class WebPal {
     }
     playAnimation(animNam, allowLoop=false) {
         this.allowAnimLoop = allowLoop;
+        this.riv.stop();
         this.riv.play(animNam);
     }
     playLargeRive(rivNam, stateMachineName, clickAnywhereToExitStateMachine=true, triggerExitInputName='trigger exit') {
