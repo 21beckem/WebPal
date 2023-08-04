@@ -33,7 +33,7 @@ class WebPal {
         this.color = color;
         this.pokeFunction = () => { console.log('Poke!') }
         this.riv = new rive.Rive({
-            src: "https://21beckem.github.io/WebPal/animationFiles/inboxfox-setColor2.riv",
+            src: "https://21beckem.github.io/WebPal/animationFiles/inboxfox-setColor-all.riv",
             canvas: this.characterEl,
             autoplay: false,
             onLoad: () => {
