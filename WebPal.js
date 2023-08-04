@@ -9,10 +9,6 @@ class WebPal {
   <canvas id="WebPal-character" width="100" height="100"></canvas>
   <div id="WebPal-textbubble">
     <a id="WebPal-text">
-        <div id="WebPal-answerscontainer">
-            <div><button class="WebPal-answerBtn">Yes</button></div>
-            <div><button class="WebPal-answerBtn">No</button></div>
-        </div>
     </a>
   </div>
 </div>`;
