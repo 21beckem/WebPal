@@ -1,6 +1,6 @@
 document.write('<script src="https://unpkg.com/@rive-app/canvas@1.2.1"></script>');
 class WebPal {
-    constructor() {
+    constructor(color='red') {
         document.body.innerHTML += `
 <div id="WebPal-screendimmer"></div>
 <canvas id="WebPal-BigAnim" style="display:none"></canvas>
@@ -30,13 +30,16 @@ class WebPal {
         this.bigRiveShowing = false;
         this.allowAnimLoop = false;
         this.fadingTimeout = null;
+        this.color = color;
         this.pokeFunction = () => { console.log('Poke!') }
         this.riv = new rive.Rive({
-            src: "https://21beckem.github.io/WebPal/animationFiles/foxFromBenjamin1.riv",
+            src: "https://21beckem.github.io/WebPal/animationFiles/inboxfox-setColor2.riv",
             canvas: this.characterEl,
             autoplay: false,
             onLoad: () => {
                 this.riv.resizeDrawingSurfaceToCanvas();
+                this.riv.stop();
+                this.riv.play('setColor.' + this.color);
             },
             onLoop: (event) => {
                 this.shouldStopLoopedAnim(event.data.animation);
