@@ -1,6 +1,6 @@
 document.write('<script src="https://unpkg.com/@rive-app/canvas@1.2.1"></script>');
 class WebPal {
-    constructor(color='red', rivFileName='foxfrombenjamin4.riv') {
+    constructor(color='red', rivFileName='foxfrombenjamin5.riv') {
         document.body.innerHTML += `
 <div id="WebPal-screendimmer"></div>
 <canvas id="WebPal-BigAnim" style="display:none"></canvas>
